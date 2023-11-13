@@ -1,6 +1,5 @@
 # cluod-native-afiliados2020
 
-
 curl -X 'POST' \
   'localhost/cloud_native_proy/api.php/analisis/afiliados2020' \
   -H 'accept: application/json' \
