@@ -5,9 +5,9 @@ MAINTAINER  Josecandido "candidop@unam.mx"
 ##COPY . /var/www/html
 ADD cloud_native_proy /var/www/html/
 ##Actualizamos el sistema
-RUN dnf update
+# RUN dnf update
 ##Instalamos nginx
-RUN dnf install  httpd
+RUN dnf install -y nginx
 ##Creamos un fichero index.html en el directorio por defecto de nginx
 RUN echo 'Mi primer Dockerfile' > /var/www/html/index.html
 ##Arrancamos NGINX a través de ENTRYPOINT para que no pueda ser
