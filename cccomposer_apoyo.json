@@ -1,0 +1,27 @@
+{
+    "name": "jc/cloud_native_proy",
+    "description": "Aplicativo de ejercicio para CloudNative, con pruebas unitarias en PHP",
+    "require": {
+        "phpunit/phpunit": "^9.6"
+    },
+    "autoload": {
+        "psr-4": {
+            "Jc\\CloudNativeProy\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Jose Candido Perez Vazquez",
+            "email": "josecandidop@hotmail.com"
+        }
+    ]
+}
+
+{
+    "require": {
+        "monolog/monolog": "1.2.*",
+        "slim/slim": "3.12.3",
+        "slim/http-cache": "^0.4.0",
+        "vlucas/phpdotenv": "^4.1"
+    }
+}

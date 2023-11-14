@@ -1,0 +1,15 @@
+docker build -t josecandidop/apache:v1 .
+
+
+
+
+# Utiliza una imagen base de PHP con Apache
+FROM php:7.4-apache
+ 
+
+# Comando para iniciar el servidor web
+CMD ["nginx", "-g", "daemon off;"]
+
+docker build -t trainingdock/apache:v1 .
+# 14. Creamos otro nuevo contenedor. Debemos parar el anterior contenedor para poder usar el mismo puerto
+docker run -d -p 80:80 --name nginx2 --rm trainingdock/nginx:v1
