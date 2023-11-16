@@ -1,5 +1,15 @@
 docker build -t josecandidop/apache:v1 .
 
+docker login
+docker push josecandidop/apache:v1
+
+
+docker run -d -p 80:80 --name apache --rm josecandidop/apache:v1
+
+
+--- KUBERNETES
+kubectl apply -f web-app-pod.yaml
+
 
 
 
