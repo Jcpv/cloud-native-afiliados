@@ -6,3 +6,14 @@ spec:
   containers:
   - name: web-app-container
     image: josecandidop/apache:v1
+
+
+
+
+
+
+
+
+
+
+    
