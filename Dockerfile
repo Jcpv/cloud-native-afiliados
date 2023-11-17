@@ -15,3 +15,9 @@ RUN echo 'Mi primer Dockerfile' > /var/www/html/index.html
 ##ENTRYPOINT ["/usr/sbin/nginx", "-g", "daemon off;"]
 ##Exponemos el Puerto 80
 EXPOSE 80
+
+
+
+
+
+
