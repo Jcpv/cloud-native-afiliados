@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: web-app-pod
+spec:
+  containers:
+  - name: web-app-container
+    image: josecandidop/afiliados2020:v1
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
