@@ -1,15 +1,52 @@
-docker build -t josecandidop/apache:v1 .
+docker pull mariadb
+docker inspect --format='{{.Config.ExposedPorts}}' mariadb
+docker run -d -p 4406:3306 --name mysql_afiliados -e MARIADB_ROOT_PASSWORD=lepanto mariadb
 
-docker login
-docker push josecandidop/apache:v1
+docker network inspect bridge
+ping 172.17.0.4
+
+docker exec -it mysql_afiliados bash
+mariadb -u root -p
+
+# https://jojozhuang.github.io/architecture/creating-mysql-image-with-docker-file/
 
 
-docker run -d -p 80:80 --name apache --rm josecandidop/apache:v1
+# PARA CREAR CONTENEDOR DE LA BD
+docker build -t josecandidop/mysql_afiliado:v1 .
+    docker login
+    docker push josecandidop/mysql_afiliado:v1
+
+docker run -d -p 4406:3306 --name mysql_afiliado -e MARIADB_ROOT_PASSWORD=Pruebas1234 mariadb
+
+
+##########
+# PARA CREAR ENTORNO DE LA APP.
+docker build -t josecandidop/afiliados2020:v1 .
+
+    docker images | grep josecandidop
+
+    docker login
+    docker push josecandidop/afiliados2020:v1
+
+docker run -d -p 80:80 --name afiliados --rm josecandidop/afiliados2020:v1
+
+curl http://localhost/cloud_native_proy/api.php/analisis/afiliados2020/32
+
+curl localhost/cloud_native_proy/api.php/analisis/afiliados2020/32
+    curl localhost/cloud_native_proy/index.html
+    curl localhost/cloud_native_proy/demo.php
+    curl localhost/cloud_native_proy/info.php
 
 
 --- KUBERNETES
 kubectl apply -f web-app-pod.yaml
+kubectl apply -f web-app-pod.yaml
 
+
+# ESTADO DEL POD
+kubectl get pods -l app=web-app-pod
+# ESTADO DEL DEPLOYMENT
+kubectl get deployment web-app-pod
 
 
 

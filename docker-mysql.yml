@@ -1,0 +1,13 @@
+version: '3'
+services:
+  mysql:
+    image: mysql:5.6
+    container_name: docker-mysql
+    environment:
+      MYSQL_DATABASE: CloudNative
+      MYSQL_USER: RootJcOs
+      MYSQL_PASSWORD: Pruebas1234
+      MYSQL_ROOT_PASSWORD: Pruebas1234
+    ports:
+      - "4406:3306"
+    restart: always
