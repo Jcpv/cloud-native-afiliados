@@ -11,12 +11,11 @@
 
 # https://jojozhuang.github.io/architecture/creating-mysql-image-with-docker-file/
 
-
 # PARA CREAR CONTENEDOR DE LA BD
 docker build -t josecandidop/mysql_afiliado:v1 .
     docker login
     docker push josecandidop/mysql_afiliado:v1
-    #docker run -d -p 3306:3306 --name josecandidop_mysql_af -e MARIADB_ROOT_PASSWORD=Pruebas1234 -e MYSQL_DATABASE=CloudNative josecandidop_mysql
+
 docker run -d -p 3306:3306 --name josecandidop_mysql_af josecandidop/mysql_afiliado:v1
 
 docker exec -it mysql_afiliado bash
@@ -34,10 +33,11 @@ docker build -t josecandidop/afiliados2020:v1 .
     docker push josecandidop/afiliados2020:v1
 
 docker run -d -p 80:80 --name afiliados --rm josecandidop/afiliados2020:v1
-    docker exec -it afiliados2020 bash
+   
+    docker exec -it afiliados bash
     apt-get update
     apt-get install -y iputils-ping
-    ping 172.17.0.4
+    ping 172.17.0.5
 
 
 
