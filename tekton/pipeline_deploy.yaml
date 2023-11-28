@@ -1,0 +1,11 @@
+apiVersion: tekton.dev/v1beta1
+kind: Pipeline
+metadata:
+  name: new-pipeline
+  namespace: user14
+spec:
+  params: []
+  resources: []
+  workspaces: []
+  tasks: []
+  finally: []
