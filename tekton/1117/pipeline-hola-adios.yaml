@@ -1,0 +1,24 @@
+apiVersion: tekton.dev/v1beta1
+kind: Pipeline
+metadata:
+  name: hello-goodbye
+  namespace: user14
+spec:
+  params:
+    - name: name
+      value: string
+    tasks:
+      - name: hello
+        taskRef:
+          name: hello
+        params:
+          - value: $(params.name)
+            name: name
+      - name: goodbye
+        runAfter:
+          - hello
+        taskRef:
+          name: goodbye
+        params:
+          - name: name
+            value: $(params.name)

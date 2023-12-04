@@ -1,0 +1,19 @@
+apiVersion: tekton.dev/v1beta1
+kind: Task
+metadata:
+  creationTimestamp: '2023-11-18T00:07:43Z'
+  generation: 3
+  name: hello
+  namespace: user14
+  resourceVersion: '73743592'
+  uid: 62bf03f7-ce7d-4e3e-ad78-81f34cad4e77
+spec:
+  params:
+    - name: name
+      type: string
+  steps:
+    - image: registry.redhat.io/ubi7/ubi-minimal
+      name: hello
+      resources: {}
+      script: |
+        echo "Hola Hola $(params.name)!"

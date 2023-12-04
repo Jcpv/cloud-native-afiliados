@@ -1,0 +1,185 @@
+apiVersion: tekton.dev/v1beta1
+kind: PipelineRun
+metadata:
+  annotations:
+    chains.tekton.dev/signed: 'true'
+    pipeline.openshift.io/started-by: developer
+  resourceVersion: '73885275'
+  name: hello-goodbye-35l303
+  uid: 1a39b8da-ec0c-4263-8289-90d604b9ec4d
+  creationTimestamp: '2023-11-18T02:48:11Z'
+  generation: 1
+  managedFields:
+    - apiVersion: tekton.dev/v1beta1
+      fieldsType: FieldsV1
+      fieldsV1:
+        'f:metadata':
+          'f:annotations':
+            .: {}
+            'f:pipeline.openshift.io/started-by': {}
+          'f:labels':
+            .: {}
+            'f:tekton.dev/pipeline': {}
+        'f:spec':
+          .: {}
+          'f:params': {}
+          'f:pipelineRef':
+            .: {}
+            'f:name': {}
+          'f:serviceAccountName': {}
+          'f:status': {}
+          'f:timeouts':
+            .: {}
+            'f:pipeline': {}
+      manager: Mozilla
+      operation: Update
+      time: '2023-11-18T02:48:11Z'
+    - apiVersion: tekton.dev/v1beta1
+      fieldsType: FieldsV1
+      fieldsV1:
+        'f:metadata':
+          'f:annotations':
+            'f:chains.tekton.dev/signed': {}
+          'f:finalizers':
+            .: {}
+            'v:"chains.tekton.dev/pipelinerun"': {}
+      manager: openshift-pipelines-chains-controller
+      operation: Update
+      time: '2023-11-18T02:48:27Z'
+    - apiVersion: tekton.dev/v1
+      fieldsType: FieldsV1
+      fieldsV1:
+        'f:status':
+          'f:childReferences': {}
+          'f:completionTime': {}
+          'f:conditions': {}
+          'f:pipelineSpec':
+            .: {}
+            'f:params': {}
+            'f:tasks': {}
+          'f:startTime': {}
+      manager: openshift-pipelines-controller
+      operation: Update
+      subresource: status
+      time: '2023-11-18T02:48:27Z'
+  namespace: user14
+  finalizers:
+    - chains.tekton.dev/pipelinerun
+  labels:
+    tekton.dev/pipeline: hello-goodbye
+spec:
+  params:
+    - name: name
+      value: World
+  pipelineRef:
+    name: hello-goodbye
+  serviceAccountName: pipeline
+  timeouts:
+    pipeline: 1h0m0s
+status:
+  childReferences:
+    - apiVersion: tekton.dev/v1
+      kind: TaskRun
+      name: hello-goodbye-35l303-hello
+      pipelineTaskName: hello
+    - apiVersion: tekton.dev/v1
+      kind: TaskRun
+      name: hello-goodbye-35l303-goodbye
+      pipelineTaskName: goodbye
+  completionTime: '2023-11-18T02:48:27Z'
+  conditions:
+    - lastTransitionTime: '2023-11-18T02:48:27Z'
+      message: 'Tasks Completed: 2 (Failed: 0, Cancelled 0), Skipped: 0'
+      reason: Succeeded
+      status: 'True'
+      type: Succeeded
+  pipelineSpec:
+    params:
+      - name: name
+        type: string
+    tasks:
+      - name: hello
+        params:
+          - name: name
+            value: World
+        taskRef:
+          kind: Task
+          name: hello
+        status:
+          completionTime: '2023-11-18T02:48:21Z'
+          conditions:
+            - lastTransitionTime: '2023-11-18T02:48:21Z'
+              message: All Steps have completed executing
+              reason: Succeeded
+              status: 'True'
+              type: Succeeded
+          podName: hello-goodbye-35l303-hello-pod
+          startTime: '2023-11-18T02:48:11Z'
+          steps:
+            - container: step-hello
+              imageID: >-
+                registry.redhat.io/ubi7/ubi-minimal@sha256:d758b2dc102119c0fe0de9a29fc1b6526952e69feef73c3ef06dde48b5daab1a
+              name: hello
+              terminated:
+                containerID: >-
+                  cri-o://351212cb7eceaee303b88c8f1857f2cc3bfa0fd0c0eae7aa480a4dd3ab91cf1b
+                exitCode: 0
+                finishedAt: '2023-11-18T02:48:21Z'
+                reason: Completed
+                startedAt: '2023-11-18T02:48:21Z'
+          taskSpec:
+            params:
+              - name: name
+                type: string
+            steps:
+              - image: registry.redhat.io/ubi7/ubi-minimal
+                name: hello
+                resources: {}
+                script: |
+                  echo "Hola Hola World!"
+          duration: 10s
+          reason: Succeeded
+      - name: goodbye
+        params:
+          - name: name
+            value: World
+        runAfter:
+          - hello
+        taskRef:
+          kind: Task
+          name: adios
+        status:
+          completionTime: '2023-11-18T02:48:27Z'
+          conditions:
+            - lastTransitionTime: '2023-11-18T02:48:27Z'
+              message: All Steps have completed executing
+              reason: Succeeded
+              status: 'True'
+              type: Succeeded
+          podName: hello-goodbye-35l303-goodbye-pod
+          startTime: '2023-11-18T02:48:21Z'
+          steps:
+            - container: step-adios
+              imageID: >-
+                registry.redhat.io/ubi7/ubi-minimal@sha256:d758b2dc102119c0fe0de9a29fc1b6526952e69feef73c3ef06dde48b5daab1a
+              name: adios
+              terminated:
+                containerID: >-
+                  cri-o://09a38147572a7cf58f0e8b8d3ce0b37794db90d2f97669d91e01fa053cd5806b
+                exitCode: 0
+                finishedAt: '2023-11-18T02:48:27Z'
+                reason: Completed
+                startedAt: '2023-11-18T02:48:27Z'
+          taskSpec:
+            params:
+              - name: name
+                type: string
+            steps:
+              - image: registry.redhat.io/ubi7/ubi-minimal
+                name: adios
+                resources: {}
+                script: |
+                  echo "Adios!!! World!"
+          duration: 6s
+          reason: Succeeded
+  startTime: '2023-11-18T02:48:11Z'

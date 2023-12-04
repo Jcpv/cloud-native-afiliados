@@ -1,0 +1,33 @@
+apiVersion: tekton.dev/v1beta1
+kind: Task
+metadata:
+  creationTimestamp: '2023-11-18T19:27:39Z'
+  generation: 1
+  name: list-directory
+  namespace: user14
+  resourceVersion: '74895403'
+  uid: 5482a858-61b9-4910-99be-886fb24be753
+spec:
+  description: Simple directory lister
+  params:
+    - default:
+        - .
+      description: the sub-directories under workspace
+      name: sub-dirs
+      type: array
+  results:
+    - description: echo the README of the repo
+      name: README
+      type: string
+  steps:
+    - args:
+        - '-ltr'
+        - $(params.sub-dirs)
+      command:
+        - ls
+      image: busybox
+      name: list-directory
+      resources: {}
+      workingDir: $(workspaces.directory.path)
+  workspaces:
+    - name: directory

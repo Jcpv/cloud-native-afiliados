@@ -1,0 +1,19 @@
+apiVersion: tekton.dev/v1beta1
+kind: Task
+metadata:
+  creationTimestamp: '2023-11-18T01:29:18Z'
+  generation: 2
+  name: adios
+  namespace: user14
+  resourceVersion: '73804458'
+  uid: 02ba80cc-1cd6-4290-9a71-f4f9f309d401
+spec:
+  params:
+    - name: name
+      type: string
+  steps:
+    - image: registry.redhat.io/ubi7/ubi-minimal
+      name: adios
+      resources: {}
+      script: |
+        echo "Adios!!! $(params.name)!"
