@@ -15,4 +15,4 @@ curl -X 'POST' \
 }'
 
 
-MODIFICANDO DESDE - developer/backend
+MODIFICANDO DESDE - developer/frontend
