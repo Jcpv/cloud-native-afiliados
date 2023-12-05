@@ -1,0 +1,7 @@
+apiVersion: tekton.dev/v1beta1
+kind: PipelineRun
+metadata:
+  name: git-pipeline-run-jc
+  namespace: user14
+spec:
+  # falta hacer este

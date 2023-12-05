@@ -1,17 +1,21 @@
 apiVersion: tekton.dev/v1beta1
 kind: TaskRun
 metadata:
-  generateName: git-clone-
+    name: taskrun-git-clone-jc
+    namespace: user14
 spec:
   taskRef:
     kind: Task
-    name: git-clone
+    name: task-git-clone-jc
   params:
-  - name: url
-    value: https://github.com/Jcpv/cloud-native-afiliados
-  - name: deleteExisting
-    value: "true"
-  workspaces:
-    - name: output
-      persistentVolumeClaim:
-        claimName: shared-workspace-jc
+    - name: name
+      value: task-git-clone-jc
+#  params:
+#  - name: url
+#    value: https://github.com/Jcpv/cloud-native-afiliados
+#  - name: deleteExisting
+#    value: "true"
+#  workspaces:
+#    - name: output
+#      persistentVolumeClaim:
+#        claimName: shared-workspace-jc

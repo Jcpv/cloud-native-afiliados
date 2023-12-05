@@ -1,0 +1,18 @@
+apiVersion: tekton.dev/v1beta1
+kind: Pipeline
+metadata:
+  name: git-pipeline-jc
+  namespace: user14
+spec:
+  params:
+    - name: name
+      type: string
+  tasks:
+    - name: git-clone-jc
+      taskRef:
+        name: git-clone
+    - name: list-directory-jc
+      runAfter:
+        - git-clone
+      taskRef:
+        name: list-directory-jc
