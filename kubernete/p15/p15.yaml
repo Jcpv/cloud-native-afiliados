@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: Pod
+metadata: 
+  name: app-jc-pod
+  namespace: user14
+spec:
+  containers:
+    - name: app-container-jc-pod
+      image: josecandidop/afiliados2020:v1
