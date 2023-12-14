@@ -2,6 +2,7 @@ apiVersion: tekton.dev/v1beta1
 kind: TaskRun
 metadata:
   generateName: kubernetes-actions-
+  name: kubernetes-jc
 spec:
   taskRef:
     name: kubernetes-actions
@@ -11,8 +12,8 @@ spec:
         #!/bin/bash
         DEPLOYMENT_NAME=afiliados2020
         kubectl delete deployment $DEPLOYMENT_NAME
-        kubectl create deployment $DEPLOYMENT_NAME --replicas=2 --image=docker.io/josecandidop/afiliados2020:v1
-        echo "----------"
+        kubectl create deployment $DEPLOYMENT_NAME --replicas=2 --image=josecandidop/afiliados2020:v1 
+        echo "---- Jc -- Comentario ------"
         CURRENT_ALREADY_PODS=$(kubectl get deployments $DEPLOYMENT_NAME | awk 'NR==2{print $4}')
         MINIMAL_AVAILABLE_PODS=2
         COUNTER=1
@@ -32,9 +33,9 @@ spec:
         kubectl get deployment $DEPLOYMENT_NAME -o wide
   workspaces:
     - name: kubeconfig-dir
-      emptyDir: {}
+      persistentVolumeClaim:
+        claimName: shared-workspace-jc
     - name: manifest-dir
-      emptyDir: {}
+      persistentVolumeClaim:
+        claimName: shared-workspace-jc
   serviceAccountName: tekton-pipeline
-
-

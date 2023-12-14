@@ -2,18 +2,19 @@ apiVersion: tekton.dev/v1beta1
 kind: TaskRun
 metadata:
   generatedName: buildah-run
+  name: prueba-buildah-jc
 spec:
   taskRef:
     name: buildah
   params:
     - name: IMAGE
-      value: "docker.io/rluna75/cloud-proyect-final:v7"
+      value: "docker.io/josecandidop/afiliados2020:v1"
     - name: TLSVERIFY
       value: "false"
     - name: STORAGE_DRIVER
       value: "vfs"
   workspaces:
     - name: source
-        persistenVolumeClaim:
-          claimName: shared-workspace-jc
+      persistentVolumeClaim:
+        claimName: shared-workspace-jc
   serviceAccountName: tekton-pipeline
