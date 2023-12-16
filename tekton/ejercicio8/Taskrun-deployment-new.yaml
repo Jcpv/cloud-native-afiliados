@@ -12,7 +12,7 @@ spec:
         #!/bin/bash
         DEPLOYMENT_NAME=afiliados2020
         kubectl delete deployment $DEPLOYMENT_NAME
-        kubectl create deployment $DEPLOYMENT_NAME --replicas=2 --image=josecandidop/afiliados2020:v1 
+        kubectl create deployment $DEPLOYMENT_NAME --replicas=2 --image=josecandidop/afiliados2020:tagname 
         echo "---- Jc -- Comentario ------"
         CURRENT_ALREADY_PODS=$(kubectl get deployments $DEPLOYMENT_NAME | awk 'NR==2{print $4}')
         MINIMAL_AVAILABLE_PODS=2

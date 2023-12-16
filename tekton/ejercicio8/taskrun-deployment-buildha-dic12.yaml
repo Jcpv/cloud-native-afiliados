@@ -17,4 +17,4 @@ spec:
     - name: source
       persistentVolumeClaim:
         claimName: shared-workspace-jc
-  serviceAccountName: tekton-pipeline
+  serviceAccountName: tekton-pipeline-jc
