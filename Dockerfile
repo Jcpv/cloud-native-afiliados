@@ -10,5 +10,5 @@ MAINTAINER  Josecandido "candidop@unam.mx"
 ##Actualizamos el sistema
 # RUN apt-get update
 VOLUME /var/www/html/
-ADD README.md /var/www/html/cloud-native-afiliados/
+ADD . /var/www/html/cloud_native_proy/
 EXPOSE 80
