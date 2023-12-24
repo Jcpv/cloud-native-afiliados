@@ -3,6 +3,7 @@ kind: TaskRun
 metadata:
   generateName: kubernetes-actions-
   name: kubernetes-jc
+  namespace: user14
 spec:
   taskRef:
     name: kubernetes-actions
