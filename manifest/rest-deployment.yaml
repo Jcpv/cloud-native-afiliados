@@ -1,0 +1,67 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mascota-rest-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mascota-rest
+  template:
+    metadata:
+      labels:
+        app: mascota-rest
+    spec:
+      containers:
+        - name: mascota-rest-container
+          image: luisriveracdmx/mascota-rest-app:1.0
+          ports:
+            - containerPort: 8084
+          env:
+          - name: MONGO_HOSTNAME
+            valueFrom:
+              secretKeyRef:
+                name: mascota-secret
+                key: MONGO_HOSTNAME
+          - name: MONGO_PORT
+            valueFrom:
+              secretKeyRef:
+                name: mascota-secret
+                key: MONGO_PORT
+          - name: MONGO_AUTHDB
+            valueFrom:
+              secretKeyRef:
+                name: mascota-secret
+                key: MONGO_AUTHDB
+          - name: MONGO_DB
+            valueFrom:
+              secretKeyRef:
+                name: mascota-secret
+                key: MONGO_DB
+          - name: MONGO_USER
+            valueFrom:
+              secretKeyRef:
+                name: mascota-secret
+                key: MONGO_USER
+          - name: MONGO_PWD
+            valueFrom:
+              secretKeyRef:
+                name: mascota-secret
+                key: MONGO_PWD
+          - name: TOMCAT_PORT
+            valueFrom:
+              secretKeyRef:
+                name: mascota-secret
+                key: TOMCAT_PORT
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mascota-rest-service
+spec:
+  selector:
+    app: mascota-rest
+  ports:
+    - protocol: TCP
+      port: 8084
+      targetPort: 8084
