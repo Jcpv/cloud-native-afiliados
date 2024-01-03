@@ -2,6 +2,7 @@ apiVersion: tekton.dev/v1beta1
 kind: TaskRun
 metadata:
   generateName: buildah-run-jc-
+  serviceAccountName: tekton-pipeline
 spec:
   taskRef:
     name: buildah
@@ -16,4 +17,3 @@ spec:
     - name: source
       persistentVolumeClaim:
         claimName: shared-workspace-jc
-  serviceAccountName: tekton-pipeline

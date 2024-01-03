@@ -1,0 +1,55 @@
+apiVersion: tekton.dev/v1beta1
+kind: Pipeline
+metadata:
+  name: git-pipeline-jc-p8-X1
+  namespace: user14
+spec:
+  params:
+    - default: 'https://github.com/Jcpv/cloud-native-afiliados'
+      description: URL del repo GIT a clonar
+      name: giturl
+      type: string
+    - default: 'docker.io/josecandidop/afiliados2020:v1'
+      description: Pull buildah image address
+      name: buildah_image
+      type: string
+  tasks:
+    - name: git-clone-jc
+      params:
+        - name: url
+          value: $(params.giturl)
+        - name: deleteExisting
+          value: 'true'
+      taskRef:
+        kind: Task
+        name: git-clone
+      workspaces:
+        - name: output
+          workspace: shared-workspace-jc
+    - name: list-directory-jc
+      runAfter:
+        - git-clone-jc
+      taskRef:
+        kind: Task
+        name: list-directory
+      workspaces:
+        - name: directory
+          workspace: shared-workspace-jc
+    - name: buildah
+      params:
+        - name: IMAGE
+          value: $(params.buildah_image)
+        - name: TLSVERIFY
+          value: 'false'
+        - name: STORAGE_DRIVER
+          value: vfs
+      runAfter:
+        - list-directory-jc
+      taskRef:
+        kind: Task
+        name: buildah
+      workspaces:
+        - name: source
+          workspace: shared-workspace-jc
+  workspaces:
+    - name: shared-workspace-jc

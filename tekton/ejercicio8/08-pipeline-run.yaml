@@ -1,0 +1,23 @@
+apiVersion: tekton.dev/v1beta1
+kind: PipelineRun
+metadata:
+  generateName: pipelinerun-cicd-deploy-3333  
+spec:
+  serviceAccountName: tekton-pipeline
+  pipelineRef:
+    name: afiliados-pipeline-p8final
+  params:
+  - name: giturl
+    value: https://github.com/Jcpv/cloud-native-afiliados
+  - name: buildah_image
+    value: docker.io/josecandidop/afiliados2020:v1
+  workspaces:
+  - name: shared-workspace-jc
+    persistentvolumeclaim:
+      claimName: shared-workspace-jc
+  - name: empty-dir
+    emptyDir: {}
+  - name: kubeconfig-dir
+    emptyDir: {}
+  - name: manifest-dir
+    emptyDir: {}

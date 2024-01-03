@@ -9,8 +9,7 @@ spec:
   params:
     - name: script
       value: |
-        kubectl delete deployment afiliados2020-service
-        kubectl create deployment afiliados2020 --image=docker.io/josecandidop/afiliados2020:v1
+        kubectl apply -f https://raw.githubusercontent.com/Jcpv/cloud-native-afiliados/main/manifest/rest-deployment.yaml
         echo "----------"
         kubectl get deployment
   workspaces:
@@ -18,4 +17,4 @@ spec:
       emptyDir: {}
     - name: manifest-dir
       emptyDir: {}
-  serviceAccountName: tekton-pipeline-secret-jc
+  serviceAccountName: tekton-pipeline
