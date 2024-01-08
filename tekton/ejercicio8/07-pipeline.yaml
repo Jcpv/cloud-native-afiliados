@@ -14,10 +14,10 @@ spec:
       type: string
       description: URL de imagen para hacer - Pull buildah -
       default: 'docker.io/josecandidop/afiliados2020:v1'
-    - name: afiliados-rest-manifest
+    - name: afiliados-manifest
       type: string
       description: URL GIT del manifest de afiliados
-      default: https://github.com/Jcpv/cloud-native-afiliados/blob/main/manifest/rest-deployment.yaml
+      default: 'https://github.com/Jcpv/cloud-native-afiliados/blob/main/manifest/rest-deployment.yaml'
   workspaces:
     - name: shared-workspace-jc
     - name: kubeconfig-dir
@@ -66,7 +66,7 @@ spec:
       params:
         - name: script
           value: |
-            kubectl apply -f $(params.afiliados-rest-manifest)
+            kubectl apply -f $(params.afiliados-manifest)
             echo "----------"
             kubectl get deployment
       workspaces:

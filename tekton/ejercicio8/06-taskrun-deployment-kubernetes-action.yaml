@@ -2,7 +2,6 @@ apiVersion: tekton.dev/v1beta1
 kind: TaskRun
 metadata:
   generateName: kubernetes-actions-
-  serviceAccountName: pipeline
   namespace: user14
 spec:
   taskRef:
@@ -10,8 +9,7 @@ spec:
   params:
     - name: script
       value: |
-        kubectl apply -f 
-        https://raw.githubusercontent.com/Jcpv/cloud-native-afiliados/main/manifest/rest-deployment.yaml
+        kubectl apply -f https://raw.githubusercontent.com/Jcpv/cloud-native-afiliados/main/manifest/rest-deployment.yaml
         echo "----------"
         kubectl get deployment
   workspaces:
