@@ -1,0 +1,32 @@
+Ejecución de Pipeline usando un trigger configurado con GitHub-WebHook.
+
+Mira los archivos anexos y configura tu trigger. 
+
+
+# RBAC
+kubectl apply -f trigger-rbac.yaml -n user14
+
+# Create the trigger template
+kubectl apply -f trigger-template.yaml -n user14
+# Create the trigger binding
+kubectl apply -f trigger-binding.yaml -n user14
+
+# Create the event listener
+kubectl apply -f event-listener.yaml -n user14
+
+# Create Ing; or in OCP, expose the event listener svc as route
+oc expose svc/el-tekton-event-listener -n user14
+
+Crear el WebHook en Git
+	
+Event Listener.yaml Event Listener.yaml
+16 de diciembre de 2023, 08:11
+	
+Trigger Binding.yaml Trigger Binding.yaml
+16 de diciembre de 2023, 08:11
+	
+Trigger RBAC.yaml Trigger RBAC.yaml
+16 de diciembre de 2023, 08:11
+	
+Trigger Template.yaml Trigger Template.yaml
+16 de diciembre de 2023, 08:11
