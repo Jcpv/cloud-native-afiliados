@@ -16,6 +16,9 @@ https://github.com/Jcpv/cloud-native-afiliados/blob/main/Dockerfile
 - Ejecutar el archivo Dockerfile de la carpeta bd/Dockerfile para crear el entorno de MariaDb que se requiere y cargar registros para realizar la pruebas correspondientes.
 https://github.com/Jcpv/cloud-native-afiliados/tree/main/bd/Dockerfile 
 
+### Registros MySql de ejemplo para ejecutar - GET
+https://github.com/Jcpv/cloud-native-afiliados/tree/main/mx_afiliados_2020v.sql
+
 ### Para Kubernetes
 - Aplicar el archivo yaml para ejecutar la imagen en kubernetes
 kubectl apply -f https://raw.githubusercontent.com/Jcpv/cloud-native-afiliados/main/manifest/rest-deployment.yaml

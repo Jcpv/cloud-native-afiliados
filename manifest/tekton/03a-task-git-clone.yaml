@@ -1,0 +1,15 @@
+apiVersion: tekton.dev/v1beta1
+kind: Task
+metadata:
+  name: task-git-clone
+  namespace: user3
+spec:
+  params:
+    - name: name
+      type: string
+  steps:
+    - image: alpine/git
+      name: clonando-repo-git-jc
+      script: |
+        git clone https://github.com/Jcpv/cloud-native-afiliados .
+        cd  ./cloud-native-afiliados
