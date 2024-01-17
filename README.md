@@ -24,7 +24,7 @@ https://github.com/Jcpv/cloud-native-afiliados/blob/main/Dockerfile
 https://github.com/Jcpv/cloud-native-afiliados/tree/main/bd/Dockerfile 
 ```
 
-### Registros MySql de ejemplo para ejecutar - GET
+### Registros MySql de ejemplo para ejecutar
 ```
 https://github.com/Jcpv/cloud-native-afiliados/tree/main/mx_afiliados_2020v.sql
 ```
