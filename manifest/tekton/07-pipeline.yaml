@@ -1,0 +1,76 @@
+apiVersion: tekton.dev/v1beta1
+kind: Pipeline
+metadata:
+  name: afiliados-pipeline-p8final
+  serviceAccountName: tekton-pipeline
+  namespace: user14
+spec:
+  params:
+    - name: giturl
+      type: string
+      description: URL del repo GIT a clonar
+      default: 'https://github.com/Jcpv/cloud-native-afiliados'
+    - name: buildah_image
+      type: string
+      description: URL de imagen para hacer - Pull buildah -
+      default: 'docker.io/josecandidop/afiliados2020:v1'
+    - name: afiliados-manifest
+      type: string
+      description: URL GIT del manifest de afiliados
+      default: 'https://github.com/Jcpv/cloud-native-afiliados/blob/main/manifest/rest-deployment.yaml'
+  workspaces:
+    - name: shared-workspace-jc
+    - name: kubeconfig-dir
+    - name: manifest-dir
+  tasks:
+    - name: git-clone-jc
+      taskRef:
+        name: git-clone
+      workspaces:
+        - name: output
+          workspace: shared-workspace-jc
+      params:
+        - name: url
+          value: $(params.giturl)
+        - name: deleteExisting
+          value: 'true'
+    - name: list-directory-jc
+      runAfter:
+        - git-clone-jc
+      taskRef:
+        name: list-directory
+      workspaces:
+        - name: directory
+          workspace: shared-workspace-jc
+    - name: buildah
+      runAfter:
+        - list-directory-jc
+      taskRef:
+        name: buildah
+      params:
+        - name: IMAGE
+          value: $(params.buildah_image)
+        - name: TLSVERIFY
+          value: 'false'
+        - name: STORAGE_DRIVER
+          value: 'vfs'
+      workspaces:
+        - name: source
+          workspace: shared-workspace-jc
+    - name: kubernetes-actions
+      runAfter:
+        - buildah
+      taskRef:
+        kind: Task
+        name: kubernetes-actions
+      params:
+        - name: script
+          value: |
+            kubectl apply -f $(params.afiliados-manifest)
+            echo "----------"
+            kubectl get deployment
+      workspaces:
+        - name: kubeconfig-dir
+          workspace: kubeconfig-dir
+        - name: manifest-dir
+          workspace: manifest-dir
