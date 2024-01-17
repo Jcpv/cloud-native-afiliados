@@ -168,3 +168,4 @@ curl -X 'DELETE' 'localhost/cloud_native_proy/api.php/analisis/afiliados2020/1'
 
 ##Otros de utilidad 
 * [Kubernetes](https://kubernetes.io/docs/home/)
+* [Tekton - Task and Pipelines](https://tekton.dev/docs/pipelines/)
