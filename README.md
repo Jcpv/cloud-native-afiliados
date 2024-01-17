@@ -160,13 +160,13 @@ curl -X 'DELETE' 'localhost/cloud_native_proy/api.php/analisis/afiliados2020/1'
 ```
 
 
-##Documentación de referencia
+## Documentación de referencia
 * [Php](https://www.php.net/manual/es/about.phpversions.php)
 * [SlimFramework](https://www.slimframework.com/docs/v3/)
 * [MariaDb](https://mariadb.org/documentation/#entry-header)
 
 
-##Otros de utilidad 
+## Otros de utilidad 
 * [Kubernetes](https://kubernetes.io/docs/home/)
 * [Tekton - Task and Pipelines](https://tekton.dev/docs/pipelines/)
 * [kubernetes-actions](https://github.com/tektoncd/catalog/tree/master/task/kubernetes-actions/0.1)
