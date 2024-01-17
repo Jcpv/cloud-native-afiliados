@@ -10,12 +10,3 @@ spec:
   params:
     - name: name
       value: task-git-clone-jc
-#  params:
-#  - name: url
-#    value: https://github.com/Jcpv/cloud-native-afiliados
-#  - name: deleteExisting
-#    value: "true"
-#  workspaces:
-#    - name: output
-#      persistentVolumeClaim:
-#        claimName: shared-workspace-jc

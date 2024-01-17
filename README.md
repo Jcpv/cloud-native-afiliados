@@ -1,11 +1,11 @@
 # cluod-native-afiliados2020
 
-## Projecto 
+## Proyecto 
 Implementar micro servicio para consultar afiliados a alguna institución publica en 2020.
 
-Tecnologías para el funcionamiento PHP 7.4, SlimFramework 3 para la API 
+Tecnologías para el funcionamiento PHP 7.4, SlimFramework 3 para la API y MariaDb para la base de datos
 
-## Dependencias
+### Dependencias
 Esta aplicación requiere estar conectada a una Base de datos de MariaDb.
 
 ### GIT del proyecto 
@@ -98,9 +98,9 @@ kubectl apply -f https://github.com/Jcpv/cloud-native-afiliados/blob/main/manife
 ```
 
 
-##Ejemplo de funcionamiento 
+## Ejemplos de funcionamiento 
 
-### Ejemplo de POST
+### POST
 ```
 curl -X 'POST' \
   'localhost/cloud_native_proy/api.php/analisis/afiliados2020' \
@@ -117,7 +117,7 @@ curl -X 'POST' \
 }'
 ```
 
-### Ejemplo de GET
+### GET
 ```
 curl -X 'GET' 'localhost/cloud_native_proy/api.php/analisis/afiliados2020/1'
 ```
@@ -137,7 +137,7 @@ Ejemplo de respuesta
 
 NOTA: Mientras existan los registros la base de datos puede dar resultados del ID al 10,000 ya que son el número de registros cargados en la base de dtos de prueba.
 
-### Ejemplo de PUT
+### PUT
 ```
 curl -X 'PUT' \
   'localhost/cloud_native_proy/api.php/analisis/afiliados2020/1' \
@@ -154,7 +154,7 @@ curl -X 'PUT' \
 }'
 ```
 
-## Ejemplo de DELETE
+## DELETE
 ```
 curl -X 'DELETE' 'localhost/cloud_native_proy/api.php/analisis/afiliados2020/1'
 ```
@@ -169,3 +169,4 @@ curl -X 'DELETE' 'localhost/cloud_native_proy/api.php/analisis/afiliados2020/1'
 ##Otros de utilidad 
 * [Kubernetes](https://kubernetes.io/docs/home/)
 * [Tekton - Task and Pipelines](https://tekton.dev/docs/pipelines/)
+* [kubernetes-actions](https://github.com/tektoncd/catalog/tree/master/task/kubernetes-actions/0.1)
